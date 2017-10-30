@@ -1,0 +1,14 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push?v=b
+
+// create an array
+//var exampleArray = ['pigs', 'goats', 'sheep'];
+
+var exampleArray = []; 
+var exarr = ['cats']; 
+// add one or more elements
+exampleArray.push('cows');
+//exarr.push('cats') 
+exampleArray[1] = exampleArray[0] + exarr[0]; 
+// log the result
+console.log(exampleArray);
+// expected output: pigs,goats,sheep,cows
