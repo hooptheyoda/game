@@ -12,6 +12,8 @@ const answer = document.getElementById('answer');
 const resultDiv = document.getElementById('result');
 const wrong = document.getElementById('wrong');
 const vdc = document.getElementById('vdc');
+const hintTxt = document.getElementById('hintTxt');
+
 
 //Modal
 var modal = document.querySelector('.modal');
@@ -108,8 +110,9 @@ function myFunction() {
 
   // Event Listeners
   hint.addEventListener('click', function (){
-    hint.textContent = h;
-  })
+    hintTxt.textContent = h;
+  });
+
   form.addEventListener('submit', getEachValue);
 
 
@@ -151,6 +154,7 @@ function clearInput(){
    e = document.getElementById('submit');
    form.removeChild(e);
 
+   hintTxt.textContent = '';
    resultDiv.textContent = '';
    wrong.textContent = '';
 }
