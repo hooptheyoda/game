@@ -27,7 +27,7 @@ const dC = document.querySelector('#dC');
 
 //set varibles
 //get question and answers
-var q, a;
+var q, a, h;
 //get the wrong input and print to screen
 var arrI = [];
 var exarr = [];
@@ -48,7 +48,7 @@ var arrQ = ['Mexican tortillas were originally made from the grain of which plan
 'What dish made from crushed durum wheat is a staple of western North Africa?',
 'Sushi is a type of cuisine that originated in what country?'];
 var arrA = ['corn', 'couscous', 'japan'];
-var arrH;
+var arrH = ['Native American staple crop', 'Not rice but like rice', 'Kon nichiwa'];
 
 /* ======= Modal ======== */
 var hideModal = function (){
@@ -94,11 +94,11 @@ function myFunction() {
   nextBtn.classList.remove('hidden');
 
   if(b === 1) {
-  vdc.classList.remove('hidden');
-  wrapper1.classList.remove('hidden');
-  question.classList.remove('hidden');
-  hint.classList.remove('hidden');
-  footer.classList.remove('hidden');
+    vdc.classList.remove('hidden');
+    wrapper1.classList.remove('hidden');
+    question.classList.remove('hidden');
+    hint.classList.remove('hidden');
+    footer.classList.remove('hidden');
   }
 
   getQA();
@@ -113,6 +113,7 @@ form.addEventListener('submit', getEachValue);
 function getQA(){
       q = arrQ[count];
       a = arrA[count];
+      h = arrH[count];
   question.textContent = q;
   count += 1;
 }
@@ -134,6 +135,10 @@ function getFormBox(){
         form.appendChild(x);
 
 } //end getFormBox()
+
+function hint(){
+  hint.textContent = h; 
+}
 
 //clear old question boxes form
 function clearInput(){
