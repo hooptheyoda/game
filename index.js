@@ -10,7 +10,7 @@ const question = document.getElementById('question');
 const answer = document.getElementById('answer');
 const resultDiv = document.getElementById('result');
 const wrong = document.getElementById('wrong');
-
+const vdc = document.getElementById('vdc');
 
 //Modal
 var modal = document.querySelector('.modal');
@@ -94,6 +94,7 @@ function myFunction() {
   nextBtn.classList.remove('hidden');
 
   if(b === 1) {
+  vdc.classList.remove('hidden');
   wrapper1.classList.remove('hidden');
   question.classList.remove('hidden');
   hint.classList.remove('hidden');
