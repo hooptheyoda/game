@@ -4,7 +4,8 @@ const startBtn = document.querySelector('#startBtn');
 const nextBtn = document.querySelector('#nextBtn');
 const wrapper1 = document.querySelector('.wrapper1');
 const footer = document.querySelector('.footer');
-const hint = document.querySelector('#hint');
+const hint = document.querySelector('.hint');
+//const hint = document.querySelector('.hint');
 const form = document.forms[0];
 const question = document.getElementById('question');
 const answer = document.getElementById('answer');
@@ -48,7 +49,7 @@ var arrQ = ['Mexican tortillas were originally made from the grain of which plan
 'What dish made from crushed durum wheat is a staple of western North Africa?',
 'Sushi is a type of cuisine that originated in what country?'];
 var arrA = ['corn', 'couscous', 'japan'];
-var arrH = ['Native American staple crop', 'Not rice but like rice', 'Kon nichiwa'];
+var arrH = ['A native American staple crop', 'Not rice but like rice', 'Kon nichiwa'];
 
 /* ======= Modal ======== */
 var hideModal = function (){
@@ -94,6 +95,7 @@ function myFunction() {
   nextBtn.classList.remove('hidden');
 
   if(b === 1) {
+    d1.classList.remove('hidden');
     vdc.classList.remove('hidden');
     wrapper1.classList.remove('hidden');
     question.classList.remove('hidden');
@@ -105,7 +107,11 @@ function myFunction() {
   getFormBox();
 
   // Event Listeners
-form.addEventListener('submit', getEachValue);
+  hint.addEventListener('click', function (){
+    hint.textContent = h;
+  })
+  form.addEventListener('submit', getEachValue);
+
 
 }//end myFunction()
 
@@ -135,10 +141,6 @@ function getFormBox(){
         form.appendChild(x);
 
 } //end getFormBox()
-
-function hint(){
-  hint.textContent = h; 
-}
 
 //clear old question boxes form
 function clearInput(){

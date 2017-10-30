@@ -121,13 +121,7 @@ a.close:hover {
 #h1 {
   display: inline-block;
   font-family: myFirstFont1;
-  margin-top: 10%;
   margin-left: 18%;
-}
-
-.video-container {
-    /*margin-left: 150px;*/
-    /*margin-left: 18%;*/
 }
 
 /* ***** Form Input ****** */
