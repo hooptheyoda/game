@@ -67,8 +67,9 @@ var toggleModal = function () {
 
 function showDirections(){
   modal.classList.remove('hidden');
-
 }
+
+window.onload = setTimeout(showModal, 3000);
 
 close.addEventListener('click', hideModal);
 
@@ -114,7 +115,6 @@ function myFunction() {
   });
 
   form.addEventListener('submit', getEachValue);
-
 
 }//end myFunction()
 

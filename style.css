@@ -33,52 +33,7 @@ body {
   font-family: myFirstFont;
 }
 
-/* ***** Modal ****** */
-.modal {
-  background: rgba(0,0,0,0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: scroll;
-}
-
-.modal-box {
-  /* temporary values*/
-  height: 200px;
-  width: 500px;
-
-  background: white;
-  margin: 0 auto; /* center horizontally */
-  position: relative;
-  top: calc(50vh - 100px);  /* the number to push down */
-  box-shadow: 0 0 15px #333;
-  border-radius: 6px;
-}
-.modal-header {
-  display: inline;
-}
-a.close {
-  display: block;
-  float: right;
-  font-size: 1.5em;
-  font-family: sans-serif;
-  color: black;
-  padding-right: 10px;
-  padding-top: 5px;
-  text-decoration: none;
-}
-
-a.close:hover {
-  color: #555;
-}
-
-.hidden {
-  display: none;
-}
-
-/* ***** Video ****** */
+/* ***** Background Video ****** */
 #bgVideo {
   position: fixed;
   top: 50%;
@@ -199,6 +154,49 @@ input[type=submit] {
   /* needed for the floated layout*/
   margin-bottom: 10px;
 }
+
+/* ***** Modal ****** */
+.modal {
+  background: rgba(0,0,0,0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.modal-box {
+  height: 450px;
+  width: 700px;
+  background: linear-gradient(#fffbe7, #20a3e3);
+  margin: 0 auto; /* center horizontally */
+  position: relative;
+  box-shadow: 0 0 15px #333;
+  border-radius: 6px;
+}
+
+a.close {
+  display: block;
+  float: right;
+  font-size: 1.5em;
+  font-family: sans-serif;
+  color: black;
+  padding-right: 10px;
+  padding-top: 5px;
+  text-decoration: none;
+}
+
+a.close:hover {
+  color: #555;
+}
+
+.modalVideo {
+  margin-left: 5%;
+  border-radius: 8px;
+  border-color: black;
+}
+
 
 .hidden {
   display: none;

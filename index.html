@@ -8,18 +8,7 @@
 
   <body>
 
-    <!-- Modal -->
-  <!-- <div class="modal hidden">
-    <div class="modal-box">
-      <header class="modal-header">
-        <a href="#" class="close">X</a>
-        <video src="video/open1.mp4" id="o1" autoplay muted loop>
-        </video>
-        <video class="hidden" src="video/open2.mp4" id="o2" autoplay muted loop>
-        </video>
-      </header>
-    </div>
-  </div> -->
+
 
   <!-- Background video -->
     <div class="bg" >
@@ -28,6 +17,22 @@
     </div>
 
     <div class="wrapper">
+
+      <!-- Modal -->
+    <div class="modal hidden">
+      <div class="modal-box">
+        <header class="modal-header">
+          <a href="#" class="close">X</a>
+        </header>
+        <div class="modalVideo">
+          <video src="video/open1.mp4" id="o1" autoplay muted loop>
+          </video>
+          <video class="hidden" src="video/open2.mp4" id="o2" autoplay muted loop>
+          </video>
+        </div>
+      </div>
+    </div>
+
       <header class="header">
       <h1 id="h1">Give Me Strength<h1>
       <button class = "button" onclick="myFunction()" id="startBtn">Start Game</button>
@@ -52,7 +57,7 @@
 
     <div class="hint hidden">
       <button class = "button" onclick="hint()" id="hintBtn">Hint</button>
-      <div id="hintTxt"></div> 
+      <div id="hintTxt"></div>
     </div>
 
     </div>
