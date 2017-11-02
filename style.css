@@ -29,7 +29,6 @@
 /* ***** Body ****** */
 body {
   margin: 40px;
-  /*font-family: 'Open Sans', 'sans-serif';*/
   font-family: myFirstFont;
 }
 
@@ -104,6 +103,16 @@ input[type=submit] {
   border: none;
   border-radius: 15px;
   box-shadow: 4px 3px #999;
+}
+
+input[type=submit]:hover {
+  background: #20a3e3;
+}
+
+input[type=submit]:active {
+  background: #20a3e3;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .wrapper, .wrapper1 {

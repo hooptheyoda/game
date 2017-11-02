@@ -2,12 +2,13 @@
 const btn = document.getElementById('btn');
 const startBtn = document.querySelector('#startBtn');
 const nextBtn = document.querySelector('#nextBtn');
+const replay = document.querySelector('#replay');
 const wrapper1 = document.querySelector('.wrapper1');
+const videoContainer = document.querySelector('.videoContainer');
 const footer = document.querySelector('.footer');
 const hint = document.querySelector('.hint');
-//const hint = document.querySelector('.hint');
 const form = document.forms[0];
-const question = document.getElementById('question');
+const question = document.querySelector('#question');
 const answer = document.getElementById('answer');
 const resultDiv = document.getElementById('result');
 const wrong = document.getElementById('wrong');
@@ -27,18 +28,21 @@ const d3 = document.querySelector('#d3');
 const d4 = document.querySelector('#d4');
 const d5 = document.querySelector('#d5');
 const dC = document.querySelector('#dC');
+const qR = document.querySelector('#qR');
 
 //set varibles
 //get question and answers
-var q, a, h;
+var q, a, h, t;
 //get the wrong input and print to screen
 var arrI = [];
 var exarr = [];
 //get the right answers
 var arrRight = [];
-var arrWrong = [];
+// var arrWrong = [];
+// var arrAnswer = [];
 //print out wrong letters
 var wrongL = '';
+var rightL = '';
 //count submit
 var wtc = 0;
 //cound correct answers
@@ -50,8 +54,15 @@ var count = 0;
 var arrQ = ['Mexican tortillas were originally made from the grain of which plant?',
 'What dish made from crushed durum wheat is a staple of western North Africa?',
 'Sushi is a type of cuisine that originated in what country?'];
-var arrA = ['corn', 'couscous', 'japan'];
-var arrH = ['A native American staple crop', 'Not rice but like rice', 'Kon nichiwa'];
+// var arrA = ['corn', 'couscous', 'japan'];
+// var arrH = ['A native American staple crop', 'Not rice but like rice', 'Kon nichiwa'];
+var arrQAH =
+ [{Question: 'Mexican tortillas were originally made from the grain of which plant?',
+    Answer: 'corn', Hint: 'A native American staple crop', Tries: 0 },
+  {Question:'What dish made from crushed durum wheat is a staple of western North Africa?',
+    Answer: 'couscous', Hint:'Not rice but like rice', Tries: 0 },
+  {Question: 'Sushi is a type of cuisine that originated in what country?',
+    Answer: 'japan', Hint: 'Kon nichiwa', Tries: 0 }];
 
 /* ======= Modal ======== */
 var hideModal = function (){
@@ -69,7 +80,7 @@ function showDirections(){
   modal.classList.remove('hidden');
 }
 
-window.onload = setTimeout(showModal, 3000);
+window.onload = setTimeout(showModal, 0);
 
 close.addEventListener('click', hideModal);
 
@@ -78,22 +89,32 @@ function startGame() {
 
 }
 
+function rePlay() {
+   location.reload();
+}
+
 //next button
 function nextQ(){
   //next button is clicked
   clearInput();
-
-  if(count <= arrQ.length){
-    myFunction();
-  } else {
+  //if array done restart
+  if (count >= arrQAH.length) {
+    count = 0;
+  }
+ //if all in the array are not correct go through array again
+  if(correct !== arrQ.length){
+      myFunction();
+  } else if(correct == arrQ.length){
     winner();
+  } else {
+
   }
 }
 
 //start game
 function myFunction() {
   let b = 0;
-      b += 1;
+      b = 1;
   startBtn.classList.add('hidden');
   nextBtn.classList.remove('hidden');
 
@@ -120,11 +141,11 @@ function myFunction() {
 
 //get question and answer: count increment questions and answers
 function getQA(){
-      q = arrQ[count];
-      a = arrA[count];
-      h = arrH[count];
+      q = arrQAH[count].Question;
+      a = arrQAH[count].Answer;
+      h = arrQAH[count].Hint;
+      count += 1;
   question.textContent = q;
-  count += 1;
 }
 
 //create inputs for form
@@ -147,16 +168,23 @@ function getFormBox(){
 
 //clear old question boxes form
 function clearInput(){
-  for (let i= 0; i < a.length; i++) {
-   var e = document.getElementById(i);
-   form.removeChild(e);
- }
-   e = document.getElementById('submit');
-   form.removeChild(e);
+  d1.classList.remove('hidden');
+  d2.classList.add('hidden');
+  d3.classList.add('hidden');
+  d4.classList.add('hidden');
+  qR.classList.add('hidden');
 
+   form.textContent = '';
    hintTxt.textContent = '';
    resultDiv.textContent = '';
    wrong.textContent = '';
+
+   videoContainer.style.marginLeft = 0 + "px";
+
+   resultDiv.classList.add('hidden');
+   wrong.classList.add('hidden');
+   form.classList.remove('hidden');
+   hint.classList.remove('hidden');
 }
 
 //get the value of each input box
@@ -166,43 +194,67 @@ function getEachValue(event){
   resultDiv.classList.remove('hidden');
   wrong.classList.remove('hidden');
 
-  wtc += 1;
+  arrQAH[count-1].Tries += 1;
+  wtc = arrQAH[count-1].Tries;
 
   for(let i= 0; i < a.length; i++) {
    var d = document.getElementById(i).value;
    var b = a[i];
 
+  if (d === b) {
+    wrong.innerHTML = '';
+    rightL += d;
+    rightL = rightL.substring(rightL.length - a.length);
+  }
+
   if (d !== b ) {
     resultDiv.textContent = 'The following inputs are wrong ';
-    wrongL += d;
     exarr[i] = d;
     arrI.push('');
-     arrI[i] = arrI[i] + exarr[i];
+    arrI[i] = arrI[i] + exarr[i];
     document.getElementById(i).value = '';
     wrong.innerHTML = '';
-
     drowing();
   }
 
   for (let i = 0; i < a.length; i++) {
-  wrong.innerHTML += `<p>Input ${i+1}: ${arrI[i]}</p><br/>`;
+    wrong.innerHTML += `<p>Input ${i+1}: ${arrI[i]}</p><br/>`;
   }
-
 
 }//end for loop
 
-  if (d === b) {
-    resultDiv.textContent = a + ' is the correct answer';
-    wrong.textContent = 'Awesome you solved this one, press next to continue';
-  }
- correctA(d,b,q);
+if (rightL === a){
+  correctA(rightL,a,q);
+}
 }
 
-function correctA(answer,value,question){
+function correctA(answer,value,quest){
+
   if (answer === value) {
-    //arrRight.push(question);
-    arrRight[arrRight.length] = question;
+    d1.classList.add('hidden');
+    d2.classList.add('hidden');
+    d3.classList.add('hidden');
+    d4.classList.add('hidden');
+    qR.classList.remove('hidden');
+
+    question.classList.add('hidden');
+    form.classList.add('hidden');
+    hint.classList.add('hidden');
+
+    videoContainer.style.marginLeft = 100 + "px";
+
+    resultDiv.textContent = a + ' is the correct answer';
+    wrong.textContent = 'Awesome you solved this one, press next to continue';
+
+    arrRight[arrRight.length] = quest;
     correct += 1;
+
+    for (let i = 0; i < arrQAH.length; i++) {
+      if(quest === arrQAH[i].Question){
+        arrQAH.splice(i,1)
+      }
+    }
+    count = 0;
   }
 }
 
@@ -213,21 +265,38 @@ function drowing(){
     d2.classList.add('hidden');
     d3.classList.remove('hidden');
     d4.classList.add('hidden');
-  }
-  if (wtc === 3) {
+    question.classList.add('hidden');
+    form.classList.add('hidden');
+    hint.classList.add('hidden');
+    resultDiv.classList.add('hidden');
+    wrong.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+  } else if (wtc > 3) {
     d1.classList.add('hidden');
     d2.classList.remove('hidden');
     d3.classList.add('hidden');
     d4.classList.add('hidden');
+  } else if (wtc === 3) {
+    d1.classList.add('hidden');
+    d2.classList.remove('hidden');
+    d3.classList.add('hidden');
+    d4.classList.add('hidden');
+  } else if (wtc < 3) {
+    d1.classList.remove('hidden');
+    d2.classList.add('hidden');
+    d3.classList.add('hidden');
+    d4.classList.add('hidden');
+  } else {
+
   }
 }
 
 //if correct = array.length, then display winner video
 function winner(){
-  if (correct === arrQ.length) {
     wrapper1.classList.add('hidden');
     question.classList.add('hidden');
     hint.classList.add('hidden');
+    nextBtn.classList.add('hidden');
 
     d1.classList.add('hidden');
     d2.classList.add('hidden');
@@ -235,15 +304,12 @@ function winner(){
     d4.classList.remove('hidden');
     resultDiv.textContent = 'The Winner is You!!!';
     wrong.textContent = '';
-  } else {
-    //start over from questions unanswered, or didn't finish
-    for (let i = 0; i<arrQ.length; i++) {
-      if (arrQ[i] !== arrRight[i]){
-        arrWrong[i].push(arrQ[i]);
-      }
-      q = arrWrong[i];
-    }
-    getFormBox();
-  }
 
+    videoContainer.style.marginLeft = 0 + "px";
+
+}
+
+function credits(){
+  dC.classList.remove('hidden');
+  setTimeout(showModal, 1000);
 }
