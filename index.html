@@ -22,11 +22,24 @@
     <div class="modal hidden">
       <div class="modal-box">
         <header class="modal-header">
+          <button class = "button" onclick="toggleShow()" id="readBtn">Read Directions</button>
           <a href="#" class="close">X</a>
         </header>
         <div class="modalVideo">
           <video src="video/op.mp4" id="op" autoplay muted loop>
           </video>
+          <p class="hidden" id="directText">
+            In this game Jeffrey goes swimmimg. Jeffery is not a strong swimmer
+            but his friend Sharkey is here to help him.
+            Oh no, Sharkey leaves in pursuit of tastey fish.
+            <br  />
+            Jeffrey now has to answer trivia questions in order to
+            gain strength to call sharky back.
+            <br  />
+            User Rules: <br  />
+             There is 1 hint. <br  />
+             User can only submit each question 6 times or else...<br  />
+          </p>
         </div>
       </div>
     </div>
@@ -45,9 +58,9 @@
       </video>
       <video class="hidden" src="video/drown2.mp4" id="d2" autoplay muted loop>
       </video>
-      <video class="hidden" src="video/drown3.mp4" id="d3" autoplay muted loop>
+      <video class="hidden" src="video/endLC.mp4" id="d3" autoplay muted loop>
       </video>
-      <video class="hidden" src="video/drown4.mp4" id="d4" autoplay muted loop>
+      <video class="hidden" src="video/endWC.mp4" id="d4" autoplay muted loop>
       </video>
       <video class="hidden" src="video/drownC.mp4" id="dC" autoplay muted loop>
       </video>
@@ -55,6 +68,7 @@
 
     <div class="hint hidden">
       <button class = "button" onclick="hint()" id="hintBtn">Hint</button>
+      <br  />  <br  />
       <div id="hintTxt"></div>
     </div>
 

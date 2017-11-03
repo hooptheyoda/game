@@ -2,6 +2,8 @@
 const btn = document.getElementById('btn');
 const startBtn = document.querySelector('#startBtn');
 const nextBtn = document.querySelector('#nextBtn');
+const directText = document.querySelector('#directText');
+const op = document.querySelector('#op');
 const replay = document.querySelector('#replay');
 const wrapper1 = document.querySelector('.wrapper1');
 const videoContainer = document.querySelector('.videoContainer');
@@ -15,11 +17,9 @@ const wrong = document.getElementById('wrong');
 const vdc = document.getElementById('vdc');
 const hintTxt = document.getElementById('hintTxt');
 
-
 //Modal
 var modal = document.querySelector('.modal');
 var close = document.querySelector('.close');
-
 
 //videos
 const d1 = document.querySelector('#d1');
@@ -32,16 +32,13 @@ const qR = document.querySelector('#qR');
 
 //set varibles
 //get question and answers
-var q, a, h, t;
+var a, h, q, t;
 //get the wrong input and print to screen
 var arrI = [];
 var exarr = [];
 //get the right answers
 var arrRight = [];
-// var arrWrong = [];
-// var arrAnswer = [];
-//print out wrong letters
-var wrongL = '';
+//get correct letters
 var rightL = '';
 //count submit
 var wtc = 0;
@@ -54,8 +51,7 @@ var count = 0;
 var arrQ = ['Mexican tortillas were originally made from the grain of which plant?',
 'What dish made from crushed durum wheat is a staple of western North Africa?',
 'Sushi is a type of cuisine that originated in what country?'];
-// var arrA = ['corn', 'couscous', 'japan'];
-// var arrH = ['A native American staple crop', 'Not rice but like rice', 'Kon nichiwa'];
+
 var arrQAH =
  [{Question: 'Mexican tortillas were originally made from the grain of which plant?',
     Answer: 'corn', Hint: 'A native American staple crop', Tries: 0 },
@@ -76,6 +72,12 @@ var toggleModal = function () {
   modal.classList.toggle('hidden');
 }
 
+//Directions
+function toggleShow() {
+  directText.classList.toggle('hidden');
+  op.classList.toggle('hidden');
+}
+
 function showDirections(){
   modal.classList.remove('hidden');
 }
@@ -84,11 +86,7 @@ window.onload = setTimeout(showModal, 0);
 
 close.addEventListener('click', hideModal);
 
-//set start of game
-function startGame() {
-
-}
-
+//Replay game: refreshes page
 function rePlay() {
    location.reload();
 }
@@ -97,11 +95,11 @@ function rePlay() {
 function nextQ(){
   //next button is clicked
   clearInput();
-  //if array done restart
+  //if array done restart array
   if (count >= arrQAH.length) {
     count = 0;
   }
- //if all in the array are not correct go through array again
+ //if all in the questions are not correct go through array again
   if(correct !== arrQ.length){
       myFunction();
   } else if(correct == arrQ.length){
@@ -127,7 +125,10 @@ function myFunction() {
     footer.classList.remove('hidden');
   }
 
+  //get questions
   getQA();
+
+  //get form box
   getFormBox();
 
   // Event Listeners
@@ -148,7 +149,7 @@ function getQA(){
   question.textContent = q;
 }
 
-//create inputs for form
+//create inputs form
 function getFormBox(){
   for (let i= 0; i < a.length; i++) {
     var x = document.createElement("input");
@@ -166,7 +167,7 @@ function getFormBox(){
 
 } //end getFormBox()
 
-//clear old question boxes form
+//clear old question information
 function clearInput(){
   d1.classList.remove('hidden');
   d2.classList.add('hidden');
@@ -228,6 +229,7 @@ if (rightL === a){
 }
 }
 
+//checks correct questions
 function correctA(answer,value,quest){
 
   if (answer === value) {
@@ -258,7 +260,7 @@ function correctA(answer,value,quest){
   }
 }
 
-//change video if loosing
+//checks if loosing
 function drowing(){
   if(wtc === 6){
     d1.classList.add('hidden');
@@ -271,6 +273,8 @@ function drowing(){
     resultDiv.classList.add('hidden');
     wrong.classList.add('hidden');
     nextBtn.classList.add('hidden');
+
+    videoContainer.style.marginLeft = 100 + "px";
   } else if (wtc > 3) {
     d1.classList.add('hidden');
     d2.classList.remove('hidden');
@@ -305,7 +309,7 @@ function winner(){
     resultDiv.textContent = 'The Winner is You!!!';
     wrong.textContent = '';
 
-    videoContainer.style.marginLeft = 0 + "px";
+    videoContainer.style.marginLeft = 100 + "px";
 
 }
 

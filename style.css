@@ -7,17 +7,17 @@
    /*src: url(Amender_Tu.ttf);*/
    /*src: url(cloning.ttf);*/
    /*src: url(Crosshatcher_D.otf); */
-   src: url(3M_Trislan.ttf);
+   /*src: url(3M_Trislan.ttf);*/
    /*src: url(Crabmeal.otf);*/
    /*src: url(Minstrels.ttf);*/
-   /*src: url(Sofija.ttf);*/
+   src: url(Sofija.ttf);
 
 }
 
 @font-face {
    font-family: myFirstFont1;
-   src: url(Amender_Tu.ttf);
-   /*src: url(cloning.ttf);*/
+   /*src: url(Amender_Tu.ttf);*/
+   src: url(cloning.ttf);
    /*src: url(Crosshatcher_D.otf); */
    /*src: url(3M_Trislan.ttf);*/
    /*src: url(Crabmeal.otf);*/
@@ -50,7 +50,7 @@ body {
 /* ***** Buttons ****** */
 .button {
   display: inline-block;
-  padding: 15px 25px;
+  padding: 15px;
   font-size: 18px;
   cursor: pointer;
   text-align: center;
@@ -147,6 +147,7 @@ input[type=submit]:active {
 .wrapper > * {
   background-color: #b8dbd3;
   color: #fff;
+  /*color: linear-gradient(#fffbe7, #20a3e3);*/
   border-radius: 8px;
   padding: 10px;
   font-size: 150%;
