@@ -169,6 +169,7 @@ function getFormBox(){
 
 //clear old question information
 function clearInput(){
+  arrI = []; 
   d1.classList.remove('hidden');
   d2.classList.add('hidden');
   d3.classList.add('hidden');
